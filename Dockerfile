@@ -2,15 +2,14 @@
 # Build stage
 #
 FROM maven:3.8.3-openjdk-17 AS build
-WORKDIR /app
-COPY . /app/
-RUN mvn clean package
+COPY . .
+RUN mvn clean install
 
 #
 # Package stage
 #
-FROM openjdk:17-alpine
-WORKDIR /app
-COPY --from=build /app/target/*.jar /app/app.jar
-EXPOSE 8080
-ENTRYPOINT ["java","-jar","app.jar"]
+FROM eclipse-temurin:17-jdk
+COPY --from=build /target/dashboard-0.0.1-SNAPSHOT.jar. dashboard.jar
+# ENV PORT=8081
+EXPOSE 8081
+ENTRYPOINT ["java","-jar","demo.jar"]
