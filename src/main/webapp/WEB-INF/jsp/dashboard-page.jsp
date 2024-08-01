@@ -287,7 +287,12 @@
               <span class="dot"></span>
               <span class="dot"></span>
             </div>
-            <i class="footer-icon"></i>
+            <i class="footer-icon">
+              <img
+                src="/images/img_3.png"
+                style="height: 14px"
+                alt="footer-icon">
+            </i>
           </div>
         </div>
       </div>
@@ -782,7 +787,6 @@
     var documents = ${documentsJson};
     var shipments = ${shipmentsJson};
     var locations = ${locationsJson};
-    console.log(locations);
     var cancelledCount = ${cancelledCount};
     var bookedCount = ${bookedCount};
   </script>

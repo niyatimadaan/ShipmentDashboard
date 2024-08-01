@@ -1,16 +1,11 @@
-#
-# Build stage
-#
+# Stage 1: Build the application
 FROM maven:3.8.3-openjdk-17 AS build
 WORKDIR /app
-COPY . /app/
-RUN mvn clean package
+COPY . .
+RUN mvn clean install
 
-#
-# Package stage
-#
-FROM openjdk:17-alpine
-WORKDIR /app
-COPY --from=build /app/target/*.jar /app/app.jar
+# Stage 2: Setup Tomcat and deploy the application
+FROM tomcat:9.0-jdk17
+COPY --from=build /app/target/*.war /usr/local/tomcat/webapps/myapp.war
 EXPOSE 8081
-ENTRYPOINT ["java","-jar","app.jar"]
+CMD ["catalina.sh", "run"]

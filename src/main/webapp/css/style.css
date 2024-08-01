@@ -316,9 +316,9 @@ main {
 }
 
 /* Sample CSS for Icons */
-.footer-icon::before {
-    content: '➡️'; /* Placeholder icon */
-}
+/* .footer-icon::before {
+    content: '➡️';
+} */
 
 .header {
     display: flex;
